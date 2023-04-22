@@ -1,0 +1,57 @@
+// import
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600&display=swap');
+@import 'vuetify/lib/styles/settings/_variables';
+
+//
+// variables
+//
+
+// breakpoints
+$hidden-md-and-up: map-get($display-breakpoints, 'md-and-up');
+$hidden-sm-and-down: map-get($display-breakpoints, 'sm-and-down');
+$hidden-sm-and-up: map-get($display-breakpoints, 'sm-and-up');
+$hidden-xs-only: map-get($display-breakpoints, 'xs');
+$xs: map-get($grid-breakpoints, 'sm') - 0.02;
+$sm: map-get($grid-breakpoints, 'sm');
+$md: map-get($grid-breakpoints, 'md');
+
+// font
+$font-nunito: 'Nunito', sans-serif;
+$font-raleway: 'Raleway', sans-serif;
+$font-oswald: 'Oswald', sans-serif;
+
+.font-nunito {
+  font-family: $font-nunito !important;
+}
+.font-raleway {
+  font-family: $font-raleway !important;
+}
+.font-oswald {
+  font-family: $font-oswald !important;
+}
+.font-weight-100 {
+  font-weight: 100;
+}
+.font-weight-300 {
+  font-weight: 300;
+}
+.font-weight-500 {
+  font-weight: 500;
+}
+.font-weight-600 {
+  font-weight: 600;
+}
+.font-weight-700 {
+  font-weight: 700;
+}
+
+//
+// Functions
+//
+
+@function color($color, $opacity: 1) {
+  $var: '--v-theme-' + $color;
+  @return rgba(var(#{$var}), $opacity);
+}
