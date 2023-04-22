@@ -13,9 +13,10 @@ const appid = useRuntimeConfig().public.OPEN_WEATHER_API_KEY
 const weather = ref<CurrentWeatherApiResponse | null>()
 
 const route = useRoute()
-const { description, setLang } = useLang()
+const { description: desc, setLang } = useLang()
 
 const name = ref<string>('tokyo')
+const description = ref<string>('')
 const lat = ref<string>((route.query.lat as string) ?? '35.6828387')
 const lon = ref<string>((route.query.lon as string) ?? '139.7594549')
 const language = ref<Language>((route.query.lang as Language) ?? 'ja')
@@ -91,6 +92,7 @@ async function fetchWeather() {
   if (data.value) {
     // await fetchReverseGeo()
     name.value = data.value.name
+    description.value = data.value.weather[0].description
     return data.value
   }
 }
@@ -118,6 +120,7 @@ onMounted(async () => {
           <wi-main-temperature
             :weather="weather"
             :name="name"
+            :description="description"
           ></wi-main-temperature>
         </wi-box>
       </v-col>
@@ -131,7 +134,7 @@ onMounted(async () => {
                 icon="mdi-thermometer-chevron-up"
                 :value="weather?.main.temp_max"
                 unit="℃"
-                :description="description.max"
+                :description="desc.max"
               ></wi-information-list-item>
             </v-col>
             <v-col cols="12" md="6">
@@ -139,7 +142,7 @@ onMounted(async () => {
                 icon="mdi-thermometer-chevron-down"
                 :value="weather?.main.temp_min"
                 unit="℃"
-                :description="description.min"
+                :description="desc.min"
               ></wi-information-list-item>
             </v-col>
             <v-col cols="12" md="6">
@@ -147,7 +150,7 @@ onMounted(async () => {
                 icon="mdi-weather-windy"
                 :value="weather?.wind.speed"
                 unit="m/sec"
-                :description="description.wind.speed"
+                :description="desc.wind.speed"
               />
             </v-col>
             <v-col cols="12" md="6">
@@ -155,7 +158,7 @@ onMounted(async () => {
                 :icon="`wi:wi-wind towards-${weather?.wind.deg}-deg`"
                 :value="weather?.wind.deg"
                 unit="deg"
-                :description="description.wind.degree"
+                :description="desc.wind.degree"
               />
             </v-col>
             <v-col cols="12" md="6">
@@ -163,7 +166,7 @@ onMounted(async () => {
                 icon="mdi-water-percent"
                 :value="weather?.main.humidity"
                 unit="%"
-                :description="description.humidity"
+                :description="desc.humidity"
               />
             </v-col>
             <v-col cols="12" md="6">
@@ -171,7 +174,7 @@ onMounted(async () => {
                 icon="wi:wi-tornado"
                 :value="weather?.main.pressure"
                 unit="hPa"
-                :description="description.pressure"
+                :description="desc.pressure"
               ></wi-information-list-item>
             </v-col>
             <v-col cols="12" md="6">
@@ -179,7 +182,7 @@ onMounted(async () => {
                 icon="wi:wi-day-sunny"
                 :value="formatTimestamp(weather?.sys.sunrise)"
                 :unit="getTimeUnit(weather?.sys.sunrise)"
-                :description="description.sunrise"
+                :description="desc.sunrise"
               ></wi-information-list-item>
             </v-col>
             <v-col cols="12" md="6">
@@ -187,7 +190,7 @@ onMounted(async () => {
                 icon="wi:wi-night-clear"
                 :value="formatTimestamp(weather?.sys.sunset)"
                 :unit="getTimeUnit(weather?.sys.sunset)"
-                :description="description.sunset"
+                :description="desc.sunset"
               ></wi-information-list-item>
             </v-col>
           </v-row>

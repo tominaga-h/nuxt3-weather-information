@@ -5,6 +5,7 @@ import { formatDate } from '@/lib/date'
 interface Props {
   weather?: CurrentWeatherApiResponse | null
   name: string
+  description?: string
 }
 
 const props = defineProps<Props>()
@@ -36,7 +37,7 @@ const formattedDate = () => {
       </v-icon>
     </div>
     <div class="weather-description">
-      <span>{{ weather?.weather[0].description }}</span>
+      <span>{{ description }}</span>
     </div>
     <div class="weather-options">
       <div class="weather-options__data">
