@@ -15,17 +15,18 @@ const route = useRoute()
 const router = useRouter()
 
 const appid = useRuntimeConfig().public.OPEN_WEATHER_API_KEY
+const queryLang = route.query.lang as string
 
 const menu = ref<boolean>(false)
 const menuItems = ref<MenuItem[]>([])
-const languageModel = ref<boolean>((route.query.lang as string) === 'ja') // true -> 日本語
+const langModel = ref<boolean>(queryLang ? queryLang === 'ja' : true)
 const forms = reactive({
   city: '',
 })
 
 const language = computed<Language>(() => {
   // true -> 日本語
-  return languageModel.value ? 'ja' : 'en'
+  return langModel.value ? 'ja' : 'en'
 })
 
 /**
@@ -139,7 +140,7 @@ function onChangeLanguage() {
       </div>
       <div class="wi-app-bar__switch">
         <v-switch
-          v-model="languageModel"
+          v-model="langModel"
           :label="language"
           hide-details="auto"
           inset

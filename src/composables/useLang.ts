@@ -10,8 +10,10 @@ const description_ja = {
     speed: '風速',
     degree: '風向',
   },
-	humidity: '湿度',
-	pressure: '気圧'
+  humidity: '湿度',
+  pressure: '気圧',
+  sunrise: '日の出時刻',
+  sunset: '日没時刻',
 }
 
 // 英語説明
@@ -22,31 +24,28 @@ const description_en = {
     speed: 'wind speed',
     degree: 'wind degree',
   },
-	humidity: 'humidity',
-	pressure: 'pressure'
+  humidity: 'humidity',
+  pressure: 'pressure',
+  sunrise: 'sunrise time',
+  sunset: 'sunset time',
 }
 
-
 export const useLang = () => {
-	const language: Ref<Language> = useState(
-		'useLang.lang', () => {
-			return 'en'
-		}
-	)
+  const language: Ref<Language> = useState('useLang.lang', () => {
+    return 'en'
+  })
 
-	const description: Ref<any> = useState(
-		'useLang.description', () => {
-			return description_en
-		}
-	)
+  const description: Ref<any> = useState('useLang.description', () => {
+    return description_en
+  })
 
-	const setLang = (lang: Language) => {
-		language.value = lang
-		description.value = lang === 'en' ? description_en : description_ja
-	}
+  const setLang = (lang: Language) => {
+    language.value = lang
+    description.value = lang === 'en' ? description_en : description_ja
+  }
 
-	return {
-		description,
-		setLang
-	}
+  return {
+    description,
+    setLang,
+  }
 }
