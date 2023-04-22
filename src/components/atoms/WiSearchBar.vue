@@ -103,7 +103,8 @@ function onChangeLanguage() {
 
 onMounted(() => {
   const el = document.querySelector('.wi-search-bar__field')
-  el?.addEventListener('input', () => {
+  el?.addEventListener('change', () => {
+    console.log('change')
     search()
   })
 })
