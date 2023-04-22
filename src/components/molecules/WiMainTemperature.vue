@@ -25,7 +25,7 @@ const formattedDate = () => {
 </script>
 
 <template>
-  <section v-if="weather" class="wi-main-temperature">
+  <section class="wi-main-temperature">
     <wi-section-title>Now</wi-section-title>
     <div class="weather-image">
       <wi-icon :icon="weatherIconIdentifier()"></wi-icon>

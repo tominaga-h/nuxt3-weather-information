@@ -118,6 +118,7 @@ onMounted(async () => {
       <v-col cols="12" md="4">
         <wi-box color="teal-lighten-2" class="wi-app__wrapper">
           <wi-main-temperature
+            v-if="weather"
             :weather="weather"
             :name="name"
             :description="description"
@@ -128,7 +129,7 @@ onMounted(async () => {
       <v-col cols="12" md="8">
         <wi-box color="teal-lighten-2">
           <wi-section-title>INFORMATION</wi-section-title>
-          <v-row class="information-list">
+          <v-row v-if="weather" class="information-list">
             <v-col cols="12" md="6">
               <wi-information-list-item
                 icon="mdi-thermometer-chevron-up"
