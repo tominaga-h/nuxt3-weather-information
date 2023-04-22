@@ -101,11 +101,12 @@ function onChangeLanguage() {
   })
 }
 
-function inputSearch() {
-  if (isDeviceMobile.value) {
+onMounted(() => {
+  const el = document.querySelector('.wi-search-bar__field')
+  el?.addEventListener('input', () => {
     search()
-  }
-}
+  })
+})
 </script>
 
 <template>
@@ -119,7 +120,6 @@ function inputSearch() {
       hide-details="auto"
       prepend-inner-icon="mdi-magnify"
       @keyup="search"
-      @input="inputSearch"
     />
     <v-menu
       v-model="menu"
