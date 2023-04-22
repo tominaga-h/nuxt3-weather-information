@@ -100,6 +100,12 @@ function onChangeLanguage() {
     },
   })
 }
+
+function inputSearch() {
+  if (isDeviceMobile.value) {
+    search()
+  }
+}
 </script>
 
 <template>
@@ -113,7 +119,7 @@ function onChangeLanguage() {
       hide-details="auto"
       prepend-inner-icon="mdi-magnify"
       @keyup="search"
-      @keyup.enter="search"
+      @input="inputSearch"
     />
     <v-menu
       v-model="menu"

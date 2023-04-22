@@ -119,7 +119,6 @@ function onChangeLanguage() {
           hide-details="auto"
           prepend-inner-icon="mdi-magnify"
           @keyup="search"
-          @keyup.enter="search"
         />
         <v-menu
           v-model="menu"
